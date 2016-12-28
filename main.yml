@@ -1,0 +1,38 @@
+---
+#
+#  Launch stack of VMs at once
+#
+- name: Launch VMs
+  hosts: macmini0
+
+  vars_files:
+    - vars/main.yml
+    - vars/vms.yml
+
+  vars_prompt:
+    - name: "stack_action"
+      prompt: "What stack action to perform: (up|down|none)?"
+      default: "up"
+
+  tasks:
+    #
+    #  Creating stack
+    #
+    - block:
+      - name: Find local TMP folder
+        set_fact: tmp_dir="{{ lookup('env','TMPDIR') }}"
+
+      - name: Create VMs
+        include: vm_create.yml vm="{{ item }}"
+        with_items: "{{ vm_list }}"
+
+      when: "stack_action == 'up'"
+
+    #
+    #  Deleting stack
+    #
+    - name: Delete VMs
+      include: vm_delete.yml vm="{{ item }}"
+      with_items: "{{ vm_list }}"
+      when: "stack_action == 'down'"
+      tags: [ skip_ansible_lint ]

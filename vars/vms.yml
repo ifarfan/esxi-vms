@@ -1,0 +1,35 @@
+---
+#
+#  VM specs
+#
+vm_list:
+  -
+    hostname: ubu01
+    fqdn:     ubu01.fios-router.home
+    ip:       192.168.1.51
+    clone_vm: ubuntu_xenial
+    os:       ubuntu-64
+    hardware:
+      cpus:   1
+      disk:   16
+      memory: 2048
+  -
+    hostname: ubu02
+    fqdn:     ubu02.fios-router.home
+    ip:       192.168.1.52
+    clone_vm: ubuntu_xenial
+    os:       ubuntu-64
+    hardware:
+      cpus:   1
+      disk:   16
+      memory: 2048
+  -
+    hostname: ubu03
+    fqdn:     ubu03.fios-router.home
+    ip:       192.168.1.53
+    clone_vm: ubuntu_xenial
+    os:       ubuntu-64
+    hardware:
+      cpus:   1
+      disk:   16
+      memory: 2048

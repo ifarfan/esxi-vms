@@ -1,0 +1,81 @@
+---
+#
+#  Launch stack of VMs all at once
+#
+- name: Find running VM ID for "{{ vm.hostname }}"
+  shell: >
+    vim-cmd vmsvc/getallvms | grep {{ vm.hostname }} | cut -d" " -f1
+  register: vm_info
+  changed_when: "vm_info.rc == 0 and vm_info.stdout == ''"
+
+- block:
+  - name: Create local "{{ vm.hostname }}" ISO folder
+    local_action:
+      file
+        path="{{ tmp_dir }}/{{ vm.hostname }}_iso"
+        state=directory
+
+  - name: Create custom "{{ vm.hostname }}" user-data
+    local_action:
+      template
+        src=files/user-data.txt.j2
+        dest="{{ tmp_dir }}/{{ vm.hostname }}_iso/user-data.txt"
+
+  - name: Create local "{{ vm.hostname }}" ISO image
+    local_action: command mkisofs -o {{ vm.hostname }}.iso -r {{ vm.hostname }}_iso
+      chdir={{ tmp_dir }}
+      creates={{ tmp_dir }}/{{ vm.hostname }}.iso
+    tags: [ skip_ansible_lint ]
+
+  - name: Create "{{ vm.hostname }}" VM folder
+    file:
+      path="/vmfs/volumes/datastore1/{{ vm.hostname }}"
+      state=directory
+
+  - name: Copy "{{ vm.hostname }}" ISO
+    copy:
+      src="{{ tmp_dir }}/{{ vm.hostname }}.iso"
+      dest="/vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.iso"
+      owner=root
+      group=root
+      mode=0644
+
+  - name: Clone pre-existing VM
+    command: >
+      vmkfstools -i
+        /vmfs/volumes/datastore1/{{ vm.clone_vm }}/{{ vm.clone_vm }}_0.vmdk
+        /vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmdk
+      creates=/vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmdk
+    tags: [ skip_ansible_lint ]
+
+  - name: Create "{{ vm.hostname }}" .vmx file
+    template:
+      src=files/clone.vmx.j2
+      dest="/vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmx"
+
+  - name: Register "{{ vm.hostname }}" VM
+    command: >
+      vim-cmd solo/registervm /vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmx
+      creates=/vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmsd
+    register: register_result
+    tags: [ skip_ansible_lint ]
+
+  - name: Start "{{ vm.hostname }}" VM
+    command: >
+      vim-cmd vmsvc/power.on {{ register_result.stdout }}
+    when: "register_result.rc == 0"
+    tags: [ skip_ansible_lint ]
+
+  when: "vm_info.rc == 0 and vm_info.stdout == ''"
+
+- name: Remove local "{{ vm.hostname }}" ISO folder
+  local_action:
+    file
+      path="{{ tmp_dir }}/{{ vm.hostname }}_iso"
+      state=absent
+
+- name: Remove local "{{ vm.hostname }}" ISO file
+  local_action:
+    file
+      path="{{ tmp_dir }}/{{ vm.hostname }}.iso"
+      state=absent

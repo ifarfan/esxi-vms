@@ -1,0 +1,26 @@
+---
+#
+#  Delete stack of VMs all at once
+#
+- name: Find VM ID for "{{ vm.hostname }}"
+  shell: >
+    vim-cmd vmsvc/getallvms | grep {{ vm.hostname }} | cut -d" " -f1
+  register: vm_info
+  changed_when: "vm_info.rc == 0 and vm_info.stdout != ''"
+
+- block:
+  - name: Stop "{{ vm.hostname }}" VM
+    command: >
+      vim-cmd vmsvc/power.off {{ vm_info.stdout }}
+    ignore_errors: yes
+
+  - name: Destroy "{{ vm.hostname }}" VM
+    command: >
+      vim-cmd vmsvc/destroy {{ vm_info.stdout }}
+
+  when: "vm_info.rc == 0 and vm_info.stdout != ''"
+
+- name: Remove "{{ vm.hostname }}" VM folder
+  file:
+    path="/vmfs/volumes/datastore1/{{ vm.hostname }}"
+    state=absent
