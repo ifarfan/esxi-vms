@@ -6,17 +6,43 @@ hostname: {{ item.hostname }}
 fqdn: {{ item.fqdn }}
 manage_etc_hosts: localhost
 
-ssh_authorized_keys:
-  - {{ ansible_ssh_key }}
+users:
+#  - default
+  - name: ansible
+    gecos: Ansible
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-import-id: None
+    lock_passwd: true
+    ssh-authorized-keys:
+      - {{ ansible_ssh_key }}
 
-network-interfaces: |
-  auto lo
-  iface lo inet loopback
+# ssh_authorized_keys:
+#   - {{ ansible_ssh_key }}
 
-  iface eth0 inet static
-    address {{ item.ip }}
-    netmask 255.255.255.0
-    gateway 192.168.1.1
+write_files:
+  - path: /etc/network/interfaces
+    content: |
+      #  Loopback network interface
+      auto lo
+      iface lo inet loopback
+
+      #  Primary network interface
+      auto ens160
+      iface ens160 inet static
+      address {{ item.ip }}
+      network 192.168.1.0
+      broadcast 192.168.1.255
+      gateway 192.168.1.1
+
+      dns-nameservers 8.8.8.8 8.8.4.4
+
+power_state:
+  timeout: 120
+  delay: "+1"
+  mode: reboot
+  message: Bye Bye
+  condition: true
 
 debug:
    verbose: true

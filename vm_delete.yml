@@ -14,13 +14,13 @@
       vim-cmd vmsvc/power.off {{ vm_info.stdout }}
     ignore_errors: yes
 
+  - name: Remove "{{ vm.hostname }}" ISO file, if still present
+    file:
+      path="/vmfs/volumes/datastore1/{{ vm.hostname }}/user-data.iso"
+      state=absent
+
   - name: Destroy "{{ vm.hostname }}" VM
     command: >
       vim-cmd vmsvc/destroy {{ vm_info.stdout }}
 
   when: "vm_info.rc == 0 and vm_info.stdout != ''"
-
-- name: Remove "{{ vm.hostname }}" VM folder
-  file:
-    path="/vmfs/volumes/datastore1/{{ vm.hostname }}"
-    state=absent

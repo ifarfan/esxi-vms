@@ -35,7 +35,7 @@
   - name: Copy "{{ vm.hostname }}" ISO
     copy:
       src="{{ tmp_dir }}/{{ vm.hostname }}.iso"
-      dest="/vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.iso"
+      dest="/vmfs/volumes/datastore1/{{ vm.hostname }}/user-data.iso"
       owner=root
       group=root
       mode=0644
@@ -63,19 +63,18 @@
   - name: Start "{{ vm.hostname }}" VM
     command: >
       vim-cmd vmsvc/power.on {{ register_result.stdout }}
-    when: "register_result.rc == 0"
+    when: "register_result.rc == 0 and vm.up == true"
     tags: [ skip_ansible_lint ]
 
   when: "vm_info.rc == 0 and vm_info.stdout == ''"
 
-- name: Remove local "{{ vm.hostname }}" ISO folder
+- name: Remove local "{{ vm.hostname }}" ISO folder/files
   local_action:
     file
-      path="{{ tmp_dir }}/{{ vm.hostname }}_iso"
+      path="{{ tmp_dir }}/{{ vm.hostname }}{{ file_ext }}"
       state=absent
-
-- name: Remove local "{{ vm.hostname }}" ISO file
-  local_action:
-    file
-      path="{{ tmp_dir }}/{{ vm.hostname }}.iso"
-      state=absent
+  with_items:
+    - "_iso"
+    - ".iso"
+  loop_control:
+    loop_var: file_ext
