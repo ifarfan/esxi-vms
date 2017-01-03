@@ -7,7 +7,6 @@ fqdn: {{ item.fqdn }}
 manage_etc_hosts: localhost
 
 users:
-#  - default
   - name: ansible
     gecos: Ansible
     shell: /bin/bash
@@ -16,9 +15,6 @@ users:
     lock_passwd: true
     ssh-authorized-keys:
       - {{ ansible_ssh_key }}
-
-# ssh_authorized_keys:
-#   - {{ ansible_ssh_key }}
 
 write_files:
   - path: /etc/network/interfaces

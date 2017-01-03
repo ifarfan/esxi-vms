@@ -12,7 +12,7 @@ vm_list:
     up:       true
     hardware:
       cpus:   1
-      disk:   16
+      disk:   8
       memory: 2048
   -
     hostname: webo1
@@ -23,7 +23,7 @@ vm_list:
     up:       true
     hardware:
       cpus:   1
-      disk:   16
+      disk:   8
       memory: 2048
   -
     hostname: webo2
@@ -34,5 +34,5 @@ vm_list:
     up:       true
     hardware:
       cpus:   1
-      disk:   16
+      disk:   8
       memory: 2048
