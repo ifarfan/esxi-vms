@@ -1,0 +1,23 @@
+---
+#
+#  Get ISO on ESXI host
+#
+- name: Download ISO unto ESXI host
+  hosts: esxi
+
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - name: Create ISO images folder
+      file:
+        path: "{{ control_os.folder }}"
+        state: directory
+        mode: 0755
+
+    - name: Download ISO image
+      command: >
+        wget -q -O {{ control_os.iso }} {{ control_os.url }}
+        chdir="{{ control_os.folder }}"
+        creates="{{ control_os.folder }}/{{ control_os.iso }}"
+      tags: [ skip_ansible_lint ]

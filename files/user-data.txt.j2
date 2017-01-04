@@ -7,14 +7,14 @@ fqdn: {{ item.fqdn }}
 manage_etc_hosts: localhost
 
 users:
-  - name: ansible
-    gecos: Ansible
+  - name: {{ control_user.username }}
+    gecos: {{ control_user.fullname }}
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     ssh-import-id: None
     lock_passwd: true
     ssh-authorized-keys:
-      - {{ ansible_ssh_key }}
+      - {{ control_user.ssh_key }}
 
 write_files:
   - path: /etc/network/interfaces
