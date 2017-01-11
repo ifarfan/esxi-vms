@@ -7,32 +7,32 @@ vm_list:
     hostname: webo0
     fqdn:     webo0.fios-router.home
     ip:       192.168.1.50
-    clone_vm: test00
+    clone_vm: ubuntu_xenial
     os:       ubuntu-64
     up:       true
     hardware:
       cpus:   1
       disk:   8
       memory: 2048
-  -
-    hostname: webo1
-    fqdn:     webo1.fios-router.home
-    ip:       192.168.1.51
-    clone_vm: test00
-    os:       ubuntu-64
-    up:       true
-    hardware:
-      cpus:   1
-      disk:   8
-      memory: 2048
-  -
-    hostname: webo2
-    fqdn:     webo2.fios-router.home
-    ip:       192.168.1.52
-    clone_vm: test00
-    os:       ubuntu-64
-    up:       true
-    hardware:
-      cpus:   1
-      disk:   8
-      memory: 2048
+  # -
+  #   hostname: webo1
+  #   fqdn:     webo1.fios-router.home
+  #   ip:       192.168.1.51
+  #   clone_vm: ubuntu_xenial
+  #   os:       ubuntu-64
+  #   up:       true
+  #   hardware:
+  #     cpus:   1
+  #     disk:   8
+  #     memory: 2048
+  # -
+  #   hostname: webo2
+  #   fqdn:     webo2.fios-router.home
+  #   ip:       192.168.1.52
+  #   clone_vm: ubuntu_xenial
+  #   os:       ubuntu-64
+  #   up:       true
+  #   hardware:
+  #     cpus:   1
+  #     disk:   8
+  #     memory: 2048
