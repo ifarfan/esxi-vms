@@ -1,0 +1,10 @@
+#cloud-config
+#
+#  Set machine default values
+#
+hostname: mynode
+fqdn: mynode.local
+manage_etc_hosts: localhost
+
+debug:
+   verbose: true

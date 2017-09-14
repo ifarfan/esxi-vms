@@ -34,7 +34,7 @@
       path="/vmfs/volumes/datastore1/{{ vm.hostname }}"
       state=directory
 
-  - name: Copy "{{ vm.hostname }}" ISO
+  - name: Upload "{{ vm.hostname }}" ISO
     copy:
       src="{{ tmp_dir }}/{{ vm.hostname }}.iso"
       dest="/vmfs/volumes/datastore1/{{ vm.hostname }}/user-data.iso"
@@ -42,10 +42,10 @@
       group=root
       mode=0644
 
-  - name: Clone pre-existing VM
+  - name: Clone pre-existing VM for "{{ vm.hostname }}"... (will take a bit)
     command: >
       vmkfstools -i
-        /vmfs/volumes/datastore1/{{ vm.clone_vm }}/{{ vm.clone_vm }}_0.vmdk
+        /vmfs/volumes/datastore1/{{ vm.clone_vm }}/{{ vm.clone_vm }}.vmdk
         /vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmdk
       creates=/vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmdk
     tags: [ skip_ansible_lint ]
@@ -85,3 +85,8 @@
     - ".iso"
   loop_control:
     loop_var: file_ext
+
+- name: Notify of delay due to cloudinit reboot
+  pause:
+    seconds=5
+    prompt="Note that cloudinit will reboot each VM as part of its own provisioning, thus please allow for a few seconds before connecting to each VM"

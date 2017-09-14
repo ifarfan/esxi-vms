@@ -32,7 +32,7 @@
     #
     #  Deleting stack
     #
-    - name: Bring "DOWN" VMs
+    - name: Tearing "DOWN" VMs
       include: vm_delete.yml vm="{{ item }}"
       with_items: "{{ vm_list }}"
       when: "stack_action == 'down'"

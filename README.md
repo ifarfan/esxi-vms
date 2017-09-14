@@ -53,7 +53,7 @@ Run these commands on each ESXI box (with "root" level privileges)
 
 ```
 mkdir -p /vmfs/volumes/datastore1/images
-cd !$ 
+cd !$
 wget -q http://releases.ubuntu.com/xenial/ubuntu-16.04.1-server-amd64.iso
 ```
 
@@ -76,7 +76,7 @@ The basic premise here is quite simple, but a bit tricky:
 
 **Manual Steps**
 
-1. Manually create a "virgin" VM with _cloud-init_ pre-installed (this will become obvious in a bit) and use it as the on-going _"clone"_ VM
+1. Manually create a "virgin" VM with _cloud-init_ pre-installed (this will become obvious in a bit) and use it as the on-going _"clone"_  or _"template"_ VM
 2. Ensure there's at least a _"sudo"_-enabled user that you can use to login to the VM and that the default "OpenSSH Server" is installed during initial provisioning
 3. Keep _memory_, _cpu_ and _disk size_ to a minimun
 
@@ -103,10 +103,10 @@ The basic premise here is quite simple, but a bit tricky:
 
 ## **Oh god, why?!?:**
 
-I've been a fan of **ESXI** for the longest time, but I've never had a chance to work with it on the job. I'm also a **Mac mini** fan and have accumulated a few over the years: they look sleek, consume little physical space, consume even less energy and are extremely quiet -- hence, they are the ideal home server lab nodes. 
+I've been a fan of **ESXI** for the longest time, but I've never had a chance to work with it on the job. I'm also a **Mac mini** fan and have accumulated a few over the years: they look sleek, consume little physical space, consume even less energy and are extremely quiet -- hence, they are the ideal home server lab nodes.
 
-A few years ago, I found out that you could run the free version of **[ESXI](http://www.virtuallyghetto.com/apple)** on a Mac mini and have managed to run pretty much everything on it (from _Windows XP_ clients, to _OSX Lion_ as local DNS servers, with a few _Linux distros_ thrown in for good measure). 
+A few years ago, I found out that you could run the free version of **[ESXI](http://www.virtuallyghetto.com/apple)** on a Mac mini and have managed to run pretty much everything on it (from _Windows XP_ clients, to _OSX Lion_ as local DNS servers, with a few _Linux distros_ thrown in for good measure).
 
-However, the VMWare mantra --like the mantra of traditional IT vendors-- is to still do things in a **"point-n-click"** way (the _"pets"_ vs _"cattle"_ argument). I've been using the **AWS cloud** and **Vagrant** for years and wanted a way to (as much as possible) drive the creation of VMs in a _"cloud-like"_, _"code-driven"_ fashion. Hence, this is a _"pet"_ project (no pun intended) to get ESXI to behave as much as possible as my personal home cloud, and in the process combine the tech artifacts that I love (_Mac Minis_, _Ansible_, _Ubuntu_, & some good-old _Bash_). 
+However, the VMWare mantra --like the mantra of all traditional IT vendors-- is to still do things in a **"point-n-click"** way (the _"pets"_ vs _"cattle"_ argument). I've been using the **AWS cloud** and **Vagrant** for years and wanted a way to (as much as possible) drive the creation of VMs in a _"cloud-like"_, _"code-driven"_ fashion. Hence, this is a _"pet"_ project (no pun intended) to get ESXI to behave as much as possible as my personal home cloud, and in the process combine the tech artifacts that I love (_Mac Minis_, _Ansible_, _Ubuntu_, & some good-old _Bash_).
 
 There are a few [solutions](https://github.com/nsidc/vagrant-vsphere) out there that do something similar but require a licensed-copy of vCenter -- it proved to be quite a challenge to get all these pieces to work together just using free ESXI, so I'm quite satisfied with the current results. There's always room for improvement so I'll continue _"polishing up"_ what I have so far.
