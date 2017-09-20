@@ -3,6 +3,30 @@
 #  VM specs
 #
 vm_list:
+#  WEB
+  -
+    hostname: webo0
+    fqdn:     webo0.fios-router.home
+    ip:       192.168.1.50
+    clone_vm: ubuntu_xenial
+    os:       ubuntu-64
+    up:       true
+    hardware:
+      cpus:   1
+      disk:   10
+      memory: 2048
+  -
+    hostname: webo1
+    fqdn:     webo1.fios-router.home
+    ip:       192.168.1.51
+    clone_vm: ubuntu_xenial
+    os:       ubuntu-64
+    up:       true
+    hardware:
+      cpus:   1
+      disk:   10
+      memory: 2048
+
 # #  GUNBOT
 #   -
 #     hostname: gunbotlnx0
@@ -50,27 +74,3 @@ vm_list:
 #       cpus:   1
 #       disk:   8
 #       memory: 4096
-
-# #  WEB
-#   -
-#     hostname: webo1
-#     fqdn:     webo1.fios-router.home
-#     ip:       192.168.1.51
-#     clone_vm: ubuntu_xenial
-#     os:       ubuntu-64
-#     up:       true
-#     hardware:
-#       cpus:   1
-#       disk:   8
-#       memory: 2048
-#   -
-#     hostname: webo2
-#     fqdn:     webo2.fios-router.home
-#     ip:       192.168.1.52
-#     clone_vm: ubuntu_xenial
-#     os:       ubuntu-64
-#     up:       true
-#     hardware:
-#       cpus:   1
-#       disk:   8
-#       memory: 2048
