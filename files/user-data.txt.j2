@@ -10,13 +10,20 @@ users:
   - name: {{ control_user.username }}
     gecos: {{ control_user.fullname }}
     shell: /bin/bash
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
     ssh-import-id: None
     lock_passwd: true
     ssh-authorized-keys:
       - {{ control_user.ssh_key }}
 
 write_files:
+  - path: /etc/sudoers.d/90-{{ control_user.username }}
+    permissions: '0440'
+    owner: root:root
+    content: |
+      #  Disable tty to enable Ansible pipelining
+      Defaults:{{ control_user.username }} !requiretty
+      {{ control_user.username }} ALL=(ALL) NOPASSWD:ALL
   - path: /etc/network/interfaces
     content: |
       #  Loopback network interface
@@ -32,6 +39,9 @@ write_files:
       gateway 192.168.1.1
 
       dns-nameservers 8.8.8.8 8.8.4.4
+  - path: /var/lib/cloud/instance/warnings/.skip
+    permissions: '0644'
+    owner: root:root
 
 power_state:
   timeout: 120

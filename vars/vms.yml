@@ -3,59 +3,74 @@
 #  VM specs
 #
 vm_list:
-  -
-    hostname: gunbotlnx0
-    fqdn:     gunbotlnx0.fios-router.home
-    ip:       192.168.1.14
-    clone_vm: ubuntu_xenial
-    os:       ubuntu-64
-    up:       true
-    hardware:
-      cpus:   1
-      disk:   16
-      memory: 4096
-  -
-    hostname: gunbotlnx1
-    fqdn:     gunbotlnx1.fios-router.home
-    ip:       192.168.1.15
-    clone_vm: ubuntu_xenial
-    os:       ubuntu-64
-    up:       true
-    hardware:
-      cpus:   1
-      disk:   16
-      memory: 4096
-  # -
-  #   hostname: gekko0
-  #   fqdn:     gekko0.fios-router.home
-  #   ip:       192.168.1.13
-  #   clone_vm: ubuntu_xenial
-  #   os:       ubuntu-64
-  #   up:       true
-  #   hardware:
-  #     cpus:   2
-  #     disk:   32
-  #     memory: 4096
-  #
-  # -
-  #   hostname: webo1
-  #   fqdn:     webo1.fios-router.home
-  #   ip:       192.168.1.51
-  #   clone_vm: ubuntu_xenial
-  #   os:       ubuntu-64
-  #   up:       true
-  #   hardware:
-  #     cpus:   1
-  #     disk:   8
-  #     memory: 2048
-  # -
-  #   hostname: webo2
-  #   fqdn:     webo2.fios-router.home
-  #   ip:       192.168.1.52
-  #   clone_vm: ubuntu_xenial
-  #   os:       ubuntu-64
-  #   up:       true
-  #   hardware:
-  #     cpus:   1
-  #     disk:   8
-  #     memory: 2048
+# #  GUNBOT
+#   -
+#     hostname: gunbotlnx0
+#     fqdn:     gunbotlnx0.fios-router.home
+#     ip:       192.168.1.14
+#     clone_vm: ubuntu_xenial
+#     os:       ubuntu-64
+#     up:       true
+#     hardware:
+#       cpus:   1
+#       disk:   16
+#       memory: 4096
+#   -
+#     hostname: gunbotlnx1
+#     fqdn:     gunbotlnx1.fios-router.home
+#     ip:       192.168.1.15
+#     clone_vm: ubuntu_xenial
+#     os:       ubuntu-64
+#     up:       true
+#     hardware:
+#       cpus:   1
+#       disk:   16
+#       memory: 4096
+#   -
+#     hostname: gunbotlnx2
+#     fqdn:     gunbotlnx2.fios-router.home
+#     ip:       192.168.1.16
+#     clone_vm: ubuntu_xenial
+#     os:       ubuntu-64
+#     up:       true
+#     hardware:
+#       cpus:   1
+#       disk:   16
+#       memory: 4096
+
+# #  GECKO
+#   -
+#     hostname: gekko0
+#     fqdn:     gekko0.fios-router.home
+#     ip:       192.168.1.13
+#     clone_vm: ubuntu_xenial
+#     os:       ubuntu-64
+#     up:       true
+#     hardware:
+#       cpus:   1
+#       disk:   8
+#       memory: 4096
+
+# #  WEB
+#   -
+#     hostname: webo1
+#     fqdn:     webo1.fios-router.home
+#     ip:       192.168.1.51
+#     clone_vm: ubuntu_xenial
+#     os:       ubuntu-64
+#     up:       true
+#     hardware:
+#       cpus:   1
+#       disk:   8
+#       memory: 2048
+#   -
+#     hostname: webo2
+#     fqdn:     webo2.fios-router.home
+#     ip:       192.168.1.52
+#     clone_vm: ubuntu_xenial
+#     os:       ubuntu-64
+#     up:       true
+#     hardware:
+#       cpus:   1
+#       disk:   8
+#       memory: 2048
