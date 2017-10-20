@@ -50,10 +50,10 @@
       creates=/vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmdk
     tags: [ skip_ansible_lint ]
 
-  - name: Resize "{{ vm.hostname }}" VM disk
-    command: >
-      vmkfstools -X {{ vm.hardware.disk }}g /vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmdk
-    tags: [ skip_ansible_lint ]
+  # - name: Resize "{{ vm.hostname }}" VM disk
+  #   command: >
+  #     vmkfstools -X {{ vm.hardware.disk }}g /vmfs/volumes/datastore1/{{ vm.hostname }}/{{ vm.hostname }}.vmdk
+  #   tags: [ skip_ansible_lint ]
 
   - name: Create "{{ vm.hostname }}" .vmx file
     template:

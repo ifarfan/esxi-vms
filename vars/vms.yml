@@ -3,31 +3,55 @@
 #  VM specs
 #
 vm_list:
-#  WEB
-  -
-    hostname: webo0
-    fqdn:     webo0.fios-router.home
-    ip:       192.168.1.50
-    clone_vm: ubuntu_xenial
-    os:       ubuntu-64
-    up:       true
-    hardware:
-      cpus:   1
-      disk:   10
-      memory: 2048
-  -
-    hostname: webo1
-    fqdn:     webo1.fios-router.home
-    ip:       192.168.1.51
-    clone_vm: ubuntu_xenial
-    os:       ubuntu-64
-    up:       true
-    hardware:
-      cpus:   1
-      disk:   10
-      memory: 2048
+# #  WEB
+#   -
+#     hostname: webo0
+#     fqdn:     webo0.fios-router.home
+#     ip:       192.168.1.50
+#     clone_vm: ubuntu_xenial
+#     os:       ubuntu-64
+#     up:       true
+#     hardware:
+#       cpus:   1
+#       disk:   10
+#       memory: 2048
+#   -
+#     hostname: webo1
+#     fqdn:     webo1.fios-router.home
+#     ip:       192.168.1.51
+#     clone_vm: ubuntu_xenial
+#     os:       ubuntu-64
+#     up:       true
+#     hardware:
+#       cpus:   1
+#       disk:   10
+#       memory: 2048
 
-# #  GUNBOT
+# #  GUNBOT 5.0.4
+#   -
+#     hostname: gunbot0
+#     fqdn:     gunbotlnx0.fios-router.home
+#     ip:       192.168.1.20
+#     clone_vm: ubuntu_xenial
+#     os:       ubuntu-64
+#     up:       true
+#     hardware:
+#       cpus:   1
+#       disk:   16
+#       memory: 4096
+ -
+   hostname: gunbot1
+   fqdn:     gunbot1.fios-router.home
+   ip:       192.168.1.21
+   clone_vm: ubuntu_xenial
+   os:       ubuntu-64
+   up:       true
+   hardware:
+     cpus:   1
+     disk:   16
+     memory: 4096
+
+# #  GUNBOT 3.3.2
 #   -
 #     hostname: gunbotlnx0
 #     fqdn:     gunbotlnx0.fios-router.home
@@ -39,28 +63,7 @@ vm_list:
 #       cpus:   1
 #       disk:   16
 #       memory: 4096
-#   -
-#     hostname: gunbotlnx1
-#     fqdn:     gunbotlnx1.fios-router.home
-#     ip:       192.168.1.15
-#     clone_vm: ubuntu_xenial
-#     os:       ubuntu-64
-#     up:       true
-#     hardware:
-#       cpus:   1
-#       disk:   16
-#       memory: 4096
-#   -
-#     hostname: gunbotlnx2
-#     fqdn:     gunbotlnx2.fios-router.home
-#     ip:       192.168.1.16
-#     clone_vm: ubuntu_xenial
-#     os:       ubuntu-64
-#     up:       true
-#     hardware:
-#       cpus:   1
-#       disk:   16
-#       memory: 4096
+
 
 # #  GECKO
 #   -
