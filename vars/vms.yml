@@ -3,77 +3,38 @@
 #  VM specs
 #
 vm_list:
-# #  WEB
-#   -
-#     hostname: webo0
-#     fqdn:     webo0.fios-router.home
-#     ip:       192.168.1.50
-#     clone_vm: ubuntu_xenial
-#     os:       ubuntu-64
-#     up:       true
-#     hardware:
-#       cpus:   1
-#       disk:   10
-#       memory: 2048
-#   -
-#     hostname: webo1
-#     fqdn:     webo1.fios-router.home
-#     ip:       192.168.1.51
-#     clone_vm: ubuntu_xenial
-#     os:       ubuntu-64
-#     up:       true
-#     hardware:
-#       cpus:   1
-#       disk:   10
-#       memory: 2048
+  #  KUBE
+  -
+    hostname: kubo0
+    fqdn:     kubo0.fios-router.home
+    ip:       192.168.1.30
+    clone_vm: ubuntu_xenial
+    os:       ubuntu-64
+    up:       true
+    hardware:
+      cpus:   1
+      disk:   20
+      memory: 2048
+  -
+    hostname: kubo1
+    fqdn:     kubo1.fios-router.home
+    ip:       192.168.1.31
+    clone_vm: ubuntu_xenial
+    os:       ubuntu-64
+    up:       true
+    hardware:
+      cpus:   1
+      disk:   20
+      memory: 2048
 
-# #  GUNBOT 5.0.4
-#   -
-#     hostname: gunbot0
-#     fqdn:     gunbotlnx0.fios-router.home
-#     ip:       192.168.1.20
-#     clone_vm: ubuntu_xenial
-#     os:       ubuntu-64
-#     up:       true
-#     hardware:
-#       cpus:   1
-#       disk:   16
-#       memory: 4096
- -
-   hostname: gunbot1
-   fqdn:     gunbot1.fios-router.home
-   ip:       192.168.1.21
-   clone_vm: ubuntu_xenial
-   os:       ubuntu-64
-   up:       true
-   hardware:
-     cpus:   1
-     disk:   16
-     memory: 4096
-
-# #  GUNBOT 3.3.2
-#   -
-#     hostname: gunbotlnx0
-#     fqdn:     gunbotlnx0.fios-router.home
-#     ip:       192.168.1.14
-#     clone_vm: ubuntu_xenial
-#     os:       ubuntu-64
-#     up:       true
-#     hardware:
-#       cpus:   1
-#       disk:   16
-#       memory: 4096
-
-
-# #  GECKO
-#   -
-#     hostname: gekko0
-#     fqdn:     gekko0.fios-router.home
-#     ip:       192.168.1.13
-#     clone_vm: ubuntu_xenial
-#     os:       ubuntu-64
-#     up:       true
-#     hardware:
-#       cpus:   1
-#       disk:   8
-#       memory: 4096
+  -
+    hostname: kubo3
+    fqdn:     kubo3.fios-router.home
+    ip:       192.168.1.32
+    clone_vm: ubuntu_xenial
+    os:       ubuntu-64
+    up:       true
+    hardware:
+      cpus:   1
+      disk:   20
+      memory: 2048

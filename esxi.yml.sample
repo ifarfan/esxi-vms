@@ -1,0 +1,22 @@
+---
+#
+#  Credentias to local ESXI hosts
+#
+esxi_hosts:
+  license: XX9X9-9X999-99999-9X9XX-9X999
+  hosts:
+  -
+    name: macmini0
+    host: 192.168.1.10
+    user: &usr root
+    password: &pwd Aw3s0m3pWd
+  -
+    name: macmini1
+    host: 192.168.1.11
+    user: &usr
+    password: &pwd
+  -
+    name: macmini2
+    host: 192.168.1.12
+    user: &usr
+    password: &pwd
